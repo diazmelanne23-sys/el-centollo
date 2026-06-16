@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Centollo - Inicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <style>
+        .modal-container {
+            display: none; /* Lo maneja el JS */
+            position: fixed;
+            z-index: 999999 !important;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(5px);
+        }
+        .modal-contenido {
+            background-color: #ffffff !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 35px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: Arial, sans-serif;
+        }
+        .btn-cerrar-modal {
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #95a5a6;
+            cursor: pointer;
+        }
+        .btn-cerrar-modal:hover { color: #e74c3c; }
+        .tag-exclusivo { background-color: #27ae60; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 12px; }
+        .modal-header h2 { color: #2c3e50; margin: 0 0 5px 0; font-size: 24px; }
+        .subtitulo-modal { color: #7f8c8d; font-size: 13px; margin: 0 0 20px 0; }
+        .introduccion-combo { font-size: 14px; color: #34495e; margin-bottom: 10px; }
+        .lista-recetas-combo { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .lista-recetas-combo li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13.5px; color: #555; }
+        .precio-contenedor { background-color: #f8f9fa; padding: 12px; border-radius: 6px; text-align: center; margin: 15px 0 25px 0; border-left: 4px solid #27ae60; }
+        .precio-antes { text-decoration: line-through; color: #95a5a6; margin-right: 15px; }
+        .precio-ahora { font-size: 20px; font-weight: bold; color: #27ae60; }
+        .btn-modal-accion { display: block; text-align: center; background-color: #2c3e50; color: #ffffff; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+
+        /* ESTILOS DEL CHATBOT DE PREGUNTAS */
+        .chatbot-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 999999;
+            transition: transform 0.3s;
+        }
+        .chatbot-flotante:hover { transform: scale(1.1); }
+        .chatbot-flotante svg { width: 30px; height: 30px; fill: white; }
+        
+        .chatbot-ventana {
+            display: none;
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 360px;
+            height: 480px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            z-index: 999999;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .chatbot-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chatbot-cerrar { cursor: pointer; font-size: 20px; }
+        .chatbot-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-msg {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            max-width: 85%;
+            line-height: 1.4;
+        }
+        .msg-bot { background-color: #eef2f5; color: #333; align-self: flex-start; }
+        .msg-user { background-color: #27ae60; color: white; align-self: flex-end; }
+        
+        .chatbot-preguntas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 5px;
+        }
+        .btn-pregunta-chat {
+            background-color: white;
+            border: 1px solid #2c3e50;
+            color: #2c3e50;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 12.5px;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+        .btn-pregunta-chat:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-principal">
+        <div class="logo-contenedor">
+            <img src="imagenes/logo-centollo.png" alt="Logo El Centollo" class="logo">
+            <h1 class="titulo-restaurante">El Centollo</h1>
+        </div>
+    </header>
+
+    <nav class="barra-navegacion">
+        <ul>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="ubicacion.html">Ubicación</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenido-principal">
+        <div class="seccion-dos-columnas">
+           
+            <section class="slider-contenedor">
+                <div class="slider-pantalla">
+                    <div class="slide"><img src="./imagenes/slider1.jpg" alt="Plato 1"></div>
+                    <div class="slide"><img src="./imagenes/slaider2.png" alt="Plato 2"></div>
+                    <div class="slide"><img src="./imagenes/slaider3.png" alt="Plato 3"></div>
+                    <div class="slide"><img src="./imagenes/slaider4.png" alt="Plato 4"></div>
+                    <div class="slide"><img src="./imagenes/slaider.png" alt="Plato 5"></div>
+                </div>
+               
+                <button class="btn-slider prev" onclick="cambiarSlide(-1)">&#10094;</button>
+                <button class="btn-slider next" onclick="cambiarSlide(1)">&#10095;</button>
+
+                <div class="puntos-contenedor">
+                    <span class="punto active" onclick="irAlSlide(0)"></span>
+                    <span class="punto" onclick="irAlSlide(1)"></span>
+                    <span class="punto" onclick="irAlSlide(2)"></span>
+                    <span class="punto" onclick="irAlSlide(3)"></span>
+                    <span class="punto" onclick="irAlSlide(4)"></span>
+                </div>
+            </section>
+
+            <section class="informacion-centollo">
+                <div class="tarjeta-info">
+                    <h2>Centollo</h2>
+                    <p class="descripcion">También conocido como Changurro o Txangurro, Cámbara, Araña, Cranca, Pateiro, Bruño o Cangrejo velludo. Es un <strong>crustáceo braquiuro</strong> y decápodo. Pertenece a la familia Majidae, la misma que los Cangrejos. Vive en la costa en fondos rocosos o arenosos. Habita en profundidades mayores de 100m.</p>
+                   
+                    <div class="detalles-tecnicos">
+                        <p><strong>Centollo</strong> <em>Maja squinado</em></p>
+                        <p><strong>(Eng)</strong> Spinous spider crab</p>
+                        <p><strong>(Fr)</strong> Araignée européenne</p>
+                    </div>
+
+                    <div class="datos-fisicos">
+                        <span><strong>Peso</strong> 500 gr - 4 kg</span>
+                        <span><strong>Dimensiones</strong> 12 - 20 cm</span>
+                    </div>
+                </div>
+            </section>
+
+        </div> 
+    </main>
+
+    <footer class="pie-pagina-instructor">
+        <div class="footer-banner-negro">
+            <div class="bloque-beneficio">
+                <img src="imagenes/fooder1.png" alt="Desde 1911" class="icono-footer-beneficio">
+                <span class="sub-verde">DESDE 1911</span>
+                <strong class="tit-blanco">MÁS DE 100 AÑOS</strong>
+                <p class="txt-gris">Desde 1911 trabajando con el mejor producto del mar</p>
+            </div>
+            <div class="bloque-beneficio">
+                <img src="imagenes/fooder2.png" alt="Directo de Lonja" class="icono-footer-beneficio">
+                <span class="sub-verde">EL PRODUCTO MÁS FRESCO</span>
+                <strong class="tit-blanco">DIRECTO DE LONJA</strong>
+                <p class="txt-gris">Pescados y mariscos directos de la lonja</p>
+            </div>
+            <div class="bloque-beneficio">
+                <img src="imagenes/fooder3.png" alt="Ahumados" class="icono-footer-beneficio">
+                <span class="sub-verde">AHUMADOS ARTESANALES</span>
+                <strong class="tit-blanco">AHUMADOS</strong>
+                <p class="txt-gris">Descubre nuestros procesos de ahumado</p>
+            </div>
+            <div class="bloque-beneficio">
+                <img src="imagenes/fooder4.png" alt="Tienda Propia" class="icono-footer-beneficio">
+                <span class="sub-verde">LA TIENDA</span>
+                <strong class="tit-blanco">TIENDA PROPIA</strong>
+                <p class="txt-gris">También te servimos en nuestra tienda física</p>
+            </div>
+            <div class="bloque-beneficio">
+                <img src="imagenes/fooder5.png" alt="Seleccionamos" class="icono-footer-beneficio">
+                <span class="sub-verde">SELECCIONAMOS POR TI</span>
+                <strong class="tit-blanco">SELECCIONAMOS</strong>
+                <p class="txt-gris">Despreocúpate y disfruta del mejor género del mar</p>
+            </div>
+        </div>
+
+        <div class="footer-contacto-social">
+            <div class="datos-contacto-texto">
+                <p class="linea-contacto"><img src="./imagenes/ubicacion.png" alt="Ubicación" class="mini-icono"> Carrera 1 #93-50 Chicó Alto, Bogotá</p>
+                <p class="linea-contacto"><img src="./imagenes/telefono.png" alt="Teléfono" class="mini-icono"> Tel: (57) 316 690 0508</p>
+                <p class="linea-contacto"><img src="./imagenes/correo.png" alt="Email" class="mini-icono"> servicioalcliente@tramonti.com.co</p>
+            </div>
+            <div class="redes-cuadradas">
+                <a href="#" class="btn-red-img"><img src="imagenes/facebook (1).png" alt="Facebook"></a>
+                <a href="#" class="btn-red-img"><img src="imagenes/twitter.png" alt="Twitter"></a>
+                <a href="#" class="btn-red-img"><img src="imagenes/whatsapp.png" alt="WhatsApp"></a>
+                <a href="#" class="btn-red-img"><img src="imagenes/telegrama.png" alt="Telegram"></a>
+                <a href="#" class="btn-red-img mas-btn">+</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-flotante" id="btnChatbot" onclick="alternarChatbot()">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+        </svg>
+    </div>
+
+    <div class="chatbot-ventana" id="ventanaChatbot">
+        <div class="chatbot-header">
+            <span>Asistente El Centollo 🦀</span>
+            <span class="chatbot-cerrar" onclick="alternarChatbot()">&times;</span>
+        </div>
+        <div class="chatbot-body" id="cuerpoChatbot">
+            <div class="chat-msg msg-bot">
+                ¡Hola! Bienvenido a El Centollo. ¿En qué te puedo colaborar hoy? Selecciona cualquiera de nuestras opciones disponibles:
+            </div>
+            <div class="chatbot-preguntas-lista" id="contenedorPreguntas">
+                <button class="btn-pregunta-chat" onclick="responderChat(1, '¿Qué incluye el Combo Mar de Sabores?')">¿Qué incluye el Combo Mar de Sabores?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(2, '¿Cuál es el precio del Combo Mar de Sabores?')">¿Cuál es el precio del Combo Mar de Sabores?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(3, '¿Cuántos platos de especialidad ofrecen?')">¿Cuántos platos de especialidad ofrecen?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(4, '¿Qué tipos de ahumados tienen?')">¿Qué tipos de ahumados tienen?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(5, '¿Para quiénes está recomendado el combo?')">¿Para quiénes está recomendado el combo?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(6, '¿Cuál es la ubicación exacta del restaurante?')">¿Cuál es la ubicación exacta del restaurante?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(7, '¿Cuál es el número telefónico de contacto?')">¿Cuál es el número telefónico de contacto?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(8, '¿A qué correo electrónico puedo escribir?')">¿A qué correo electrónico puedo escribir?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(9, '¿El restaurante tiene tienda física propia?')">¿El restaurante tiene tienda física propia?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(10, '¿De dónde traen los mariscos y pescados?')">¿De dónde traen los mariscos y pescados?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(11, '¿Cómo puedo hacer una reserva?')">¿Cómo puedo hacer una reserva?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(12, '¿Desde qué año está abierto el restaurante?')">¿Desde qué año está abierto el restaurante?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(13, '¿Cuáles son las redes sociales oficiales?')">¿Cuáles son las redes sociales oficiales?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(14, '¿Se puede reservar directo desde el anuncio?')">¿Se puede reservar directo desde el anuncio?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(15, '¿Qué ventajas tiene realizar una reserva?')">¿Qué ventajas tiene realizar una reserva?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(16, '¿Qué es un centollo y cuáles son sus características?')">¿Qué es un centollo y sus características?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(17, '¿Con qué otros nombres alternativos se le conoce?')">¿Con qué otros nombres alternativos se le conoce?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(18, '¿A qué familia científica pertenece?')">¿A qué familia científica pertenece?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(19, '¿Cuál es el peso y tamaño promedio?')">¿Cuál es el peso y tamaño promedio?</button>
+                <button class="btn-pregunta-chat" onclick="responderChat(20, '¿Cuál es su hábitat y profundidad natural?')">¿Cuál es su hábitat y profundidad natural?</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalPromocion" class="modal-container">
+        <div class="modal-contenido">
+            <span class="btn-cerrar-modal">&times;</span>
+            <div class="modal-header">
+                <span class="tag-exclusivo">✨ PROMOCIÓN DEL DÍA ✨</span>
+                <h2>Combo Mar de Sabores</h2>
+                <p class="subtitulo-modal">Disfruta de una experiencia gastronómica completa con nuestra selección especial</p>
+            </div>
+           
+            <div class="modal-cuerpo">
+                <p class="introduccion-combo">El combo ideal para compartir en familia. Incluye porciones especiales de:</p>
+                <ul class="lista-recetas-combo">
+                    <li><strong>1. Falsa mousse centollo en cucharitas</strong> (Entrada perfecta)</li>
+                    <li><strong>2. Crema de centolla con crujiente de pan</strong> (El toque cálido)</li>
+                    <li><strong>4. Empanadas de chupe de centolla con camarones</strong> (Sabor crujiente)</li>
+                    <li><strong>6. Spaghetti con carne de centolla</strong> (Plato fuerte gourmet)</li>
+                </ul>
+                <div class="precio-contenedor">
+                    <span class="precio-antes">Antes: $140.000</span>
+                    <span class="precio-ahora">¡Hoy por solo $95.000!</span>
+                </div>
+            </div>
+           
+            <div class="modal-footer">
+                <a href="reservas.html" class="btn-modal-accion">Reserva tu Mesa Ahora</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        mostrarSlides(slideIndex);
+
+        function cambiarSlide(n) {
+            mostrarSlides(slideIndex += n);
+        }
+
+        function irAlSlide(n) {
+            mostrarSlides(slideIndex = n);
+        }
+
+        function mostrarSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let puntos = document.getElementsByClassName("punto");
+            
+            if (n >= slides.length) { slideIndex = 0; }    
+            if (n < 0) { slideIndex = slides.length - 1; }
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            
+            for (i = 0; i < puntos.length; i++) {
+                puntos[i].className = puntos[i].className.replace(" active", "");
+            }
+            
+            if (slides[slideIndex]) {
+                slides[slideIndex].style.display = "block";  
+            }
+            if (puntos[slideIndex]) {
+                puntos[slideIndex].className += " active";
+            }
+        }
+
+        setInterval(() => {
+            cambiarSlide(1);
+        }, 4000);
+
+        // LÓGICA INTERACTIVA DEL CHATBOT
+        function alternarChatbot() {
+            const ventana = document.getElementById('ventanaChatbot');
+            ventana.style.display = (ventana.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function responderChat(idPregunta, textoPregunta) {
+            const cuerpo = document.getElementById('cuerpoChatbot');
+            const listaPreguntas = document.getElementById('contenedorPreguntas');
+
+            // 1. Añadir pregunta seleccionada por el usuario al chat
+            const msgUser = document.createElement('div');
+            msgUser.className = 'chat-msg msg-user';
+            msgUser.innerText = textoPregunta;
+            cuerpo.insertBefore(msgUser, listaPreguntas);
+
+            // 2. Base de datos con las 20 respuestas estructuradas
+            let respuestaBot = "";
+            switch(idPregunta) {
+                case 1:
+                    respuestaBot = "El 'Combo Mar de Sabores' incluye porciones especiales de: Falsa mousse centollo en cucharitas, Crema de centolla con crujiente de pan, Empanadas de chupe de centolla con camarones y Spaghetti con carne de centolla.";
+                    break;
+                case 2:
+                    respuestaBot = "¡Hoy se encuentra en oferta especial! Su precio es de solo $95.000, reduciéndose de su tarifa original de antes de $140.000.";
+                    break;
+                case 3:
+                    respuestaBot = "En nuestro restaurante ofrecemos un exclusivo menú compuesto por nuestras 10 especialidades gastronómicas marítimas.";
+                    break;
+                case 4:
+                    respuestaBot = "Ofrecemos productos marinos con procesos de ahumado completamente artesanales desarrollados bajo técnicas tradicionales de la casa.";
+                    break;
+                case 5:
+                    respuestaBot = "Nuestra promoción está diseñada de forma ideal como el combo perfecto para compartir y disfrutar en familia.";
+                    break;
+                case 6:
+                    respuestaBot = "Nos encontramos ubicados en la Carrera 1 #93-50 Chicó Alto, Bogotá. ¡Estaremos encantados de atenderte!";
+                    break;
+                case 7:
+                    respuestaBot = "Puedes contactarnos de forma directa llamando a nuestra línea telefónica autorizada: (57) 316 690 0508.";
+                    break;
+                case 8:
+                    respuestaBot = "Puedes escribirnos con total tranquilidad a nuestra dirección de correo electrónico institucional: servicioalcliente@tramonti.com.co.";
+                    break;
+                case 9:
+                    respuestaBot = "¡Sí! Además de la atención a manteles en mesa, también te servimos y distribuimos directamente desde nuestra tienda física propia.";
+                    break;
+                case 10:
+                    respuestaBot = "Trabajamos únicamente con el género marino más fresco del mercado, traído de forma directa desde la lonja de pescados.";
+                    break;
+                case 11:
+                    respuestaBot = "Puedes agendar ingresando rápidamente a la sección de 'Reservas' localizada en nuestra barra de navegación superior.";
+                    break;
+                case 12:
+                    respuestaBot = "Contamos con una amplia tradición en el mercado. Trabajamos con el mejor producto marino desde el año 1911, sumando más de 100 años de experiencia.";
+                    break;
+                case 13:
+                    respuestaBot = "Nuestros canales sociales oficiales de comunicación directa integran accesos para Facebook, Twitter, WhatsApp y Telegram.";
+                    break;
+                case 14:
+                    respuestaBot = "¡Exactamente! Al presionar el botón 'Reserva tu Mesa Ahora' dentro de la ventana de promoción, el sistema te redirigirá automáticamente a la sección de reservas.";
+                    break;
+                case 15:
+                    respuestaBot = "Hacer una reserva te permite asegurar tu mesa de inmediato para que te desentiendas y te dediques únicamente a disfrutar el género del mar.";
+                    break;
+                case 16:
+                    respuestaBot = "El centollo es un crustáceo braquiuro y decápodo que se caracteriza por poseer caparazón espinoso y habitar fondos marinos.";
+                    break;
+                case 17:
+                    respuestaBot = "Dependiendo de la costa se le conoce también como Changurro o Txangurro, Cámbara, Araña, Cranca, Pateiro, Bruño o Cangrejo velludo.";
+                    break;
+                case 18:
+                    respuestaBot = "Científicamente se clasifica bajo el nombre de 'Maja squinado' y pertenece formalmente a la familia Majidae, compartida con los cangrejos.";
+                    break;
+                case 19:
+                    respuestaBot = "Nuestros ejemplares cuentan con un peso óptimo que oscila entre los 500 gramos y los 4 kilogramos, con dimensiones de 12 a 20 centímetros.";
+                    break;
+                case 20:
+                    respuestaBot = "Habita de forma regular en la costa sobre fondos rocosos o arenosos, viviendo en profundidades marinas que superan los 100 metros.";
+                    break;
+            }
+
+            // 3. Imprimir respuesta del Asistente con retraso simulado (0.4 segundos)
+            setTimeout(() => {
+                const msgBot = document.createElement('div');
+                msgBot.className = 'chat-msg msg-bot';
+                msgBot.innerText = respuestaBot;
+                cuerpo.insertBefore(msgBot, listaPreguntas);
+                cuerpo.scrollTop = cuerpo.scrollHeight;
+            }, 400);
+        }
+
+        // CONTROL DEL MODAL PROMOCIONAL AL CARGAR
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('modalPromocion');
+            const btnCerrar = document.querySelector('.btn-cerrar-modal');
+
+            setTimeout(() => {
+                if (modal) { modal.style.display = 'block'; }
+            }, 1500);
+
+            if (btnCerrar) {
+                btnCerrar.addEventListener('click', () => { modal.style.display = 'none'; });
+            }
+
+            window.addEventListener('click', (evento) => {
+                if (evento.target === modal) { modal.style.display = 'none'; }
+            });
+        });
+    </script>
+
+</body>
+</html>
