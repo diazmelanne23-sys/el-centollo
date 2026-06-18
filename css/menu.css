@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Estilos Globales y Tipografía (Estilo Limpio de las fotos)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #fdfcf7; /* Fondo beige muy claro de la primera imagen */
+    color: #333;
+}
+
+/* ==========================================================================
+   Header (Logotipo central de "El Centollo")
+   ========================================================================== */
+.header-principal {
+    background-color: #fdfcf7;
+    padding: 30px 0 15px 0;
+    text-align: center;
+}
+
+.logo-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 140px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.titulo-restaurante {
+    font-size: 3rem;
+    font-family: 'Brush Script MT', cursive, sans-serif; /* Imita la letra manuscrita de la imagen */
+    font-weight: bold;
+    color: #000;
+}
+
+/* ==========================================================================
+   Barra de Navegación (Banner Negro Fino)
+   ========================================================================== */
+.barra-navegacion {
+    background-color: #111111;
+    padding: 14px 0;
+}
+
+.barra-navegacion ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Separación amplia como en el diseño */
+}
+
+.barra-navegacion ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Georgia", serif; /* Tipografía con serifas fina del menú */
+    font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   Sección del Menú (Listado de Recetas)
+   ========================================================================== */
+.contenedor-menu {
+    max-width: 900px; /* Ajustado para simular el ancho de una pantalla de app/web moderna */
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+.titulo-seccion {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Lista vertical compacta de platos como en la Foto 2 */
+.cuadricula-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espaciado sutil entre filas */
+}
+
+/* Tarjeta del Plato (Fila limpia con bordes redondeados ligeros) */
+.tarjeta-plato {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e6e6e6;
+    overflow: hidden;
+    padding: 12px; /* Margen interno para que no pegue a los bordes */
+    align-items: center;
+}
+
+/* Imagen cuadrada idéntica a la app de recetas */
+.imagen-plato {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px; /* Bordes ligeramente redondeados en la foto */
+    margin-right: 15px;
+}
+
+/* Bloque de Información del plato */
+.info-plato {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.info-plato h3 {
+    font-size: 1.1rem;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* Lista de ingredientes gris clara y separada por puntos */
+.ingredientes {
+    font-size: 0.88rem;
+    color: #8e8e93; 
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+/* Autor y datos (Tiempo / Comensales) */
+.autor {
+    font-size: 0.82rem;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   Pie de Página (Footer de Beneficios y Contacto)
+   ========================================================================== */
+.pie-pagina-instructor {
+    margin-top: 60px;
+    background-color: #0d0d0d;
+    color: #ffffff;
+}
+
+/* Banner de los 5 bloques de beneficios */
+.footer-banner-negro {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 20px;
+    border-bottom: 1px solid #222222;
+    gap: 20px;
+}
+
+.bloque-beneficio {
+    flex: 1;
+    text-align: center;
+}
+
+.icono-footer-beneficio {
+    width: 40px;
+    height: auto;
+    margin-bottom: 12px;
+}
+
+.sub-verde {
+    display: block;
+    color: #27ae60;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.tit-blanco {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.txt-gris {
+    font-size: 0.8rem;
+    color: #888888;
+    line-height: 1.4;
+}
+
+/* Sección inferior de Redes y Dirección */
+.footer-contacto-social {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datos-contacto-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.linea-contacto {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-icono {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+/* Redes Sociales en cuadrícula gris */
+.redes-cuadradas {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-red-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background-color: #222222;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-red-img img {
+    width: 16px;
+    height: 16px;
+    filter: invert(1); /* Pasa los iconos a blanco */
+}
+
+.mas-btn {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}

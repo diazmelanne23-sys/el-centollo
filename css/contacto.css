@@ -1,0 +1,356 @@
+/* ==========================================================================
+   1. RESET GENERAL Y CONFIGURACIÓN BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #ffffff; /* Fondo blanco limpio como en la referencia */
+    color: #333333;
+}
+
+/* ==========================================================================
+   2. CABECERA (HEADER) Y LOGOTIPO
+   ========================================================================== */
+.header-principal {
+    background-color: #ffffff;
+    padding: 25px 0 15px 0;
+}
+
+.logo-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-contenedor .logo {
+    height: 90px;
+    width: auto;
+    display: block;
+}
+
+.titulo-restaurante {
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-style: italic;
+    color: #000000;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN
+   ========================================================================== */
+.barra-navegacion {
+    background-color: #1a1a1a;
+    padding: 12px 0;
+}
+
+.barra-navegacion ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    align-items: center;
+}
+
+.barra-navegacion ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+}
+
+.barra-navegacion ul li a:hover {
+    color: #b3b3b3;
+}
+
+/* ==========================================================================
+   4. CONTENEDOR DE CONTACTO (ESTILO EXACTO A LA IMAGEN)
+   ========================================================================== */
+.contenedor-contacto {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Banner de títulos en caja crema con líneas sutiles */
+.banner-contacto {
+    text-align: center;
+    background-color: #f6f2e8; /* Tono crema beige de la imagen */
+    padding: 35px 20px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    border-top: 1px solid #e3dac9;
+    border-bottom: 1px solid #e3dac9;
+}
+
+.banner-contacto h2 {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: #333333;
+    font-weight: normal;
+    display: inline-block;
+    padding: 0 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Líneas decorativas superiores e inferiores para el título */
+.banner-contacto h2::before,
+.banner-contacto h2::after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background-color: #9c9c9c;
+}
+.banner-contacto h2::before { top: -8px; }
+.banner-contacto h2::after { bottom: -8px; }
+
+.banner-contacto p {
+    font-size: 14px;
+    color: #444444;
+    margin-top: 15px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Columnas de información de contacto paralelas */
+.columnas-contacto {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    margin-bottom: 60px;
+    padding: 0 10px;
+}
+
+.columnas-contacto .columna {
+    flex: 1;
+}
+
+.columnas-contacto .columna h3 {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #333333;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.columnas-contacto .columna p {
+    font-size: 14px;
+    color: #444444;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.columnas-contacto .columna p strong {
+    color: #222222;
+    font-weight: bold;
+}
+
+.email-verde {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   5. SECCIÓN DEL CÓDIGO QR (ADAPTADO AL ESTILO DE LA IMAGEN)
+   ========================================================================== */
+.formulario-seccion {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.tarjeta-qr-contenedor h3 {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #333333;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.tarjeta-qr-contenedor p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+/* Recuadro limpio y minimalista para centrar la imagen contacto.png */
+.tarjeta-qr-imagen {
+    display: inline-block;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e3dac9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+}
+
+.qr-imagen {
+    width: 200px;
+    height: 200px;
+    display: block;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   6. PIE DE PÁGINA (FOOTER COMPLETO)
+   ========================================================================== */
+.pie-pagina-instructor {
+    background-color: #0b0b0d;
+    color: #ffffff;
+    width: 100%;
+}
+
+.footer-banner-negro {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 50px 20px;
+    border-bottom: 1px solid #1c1c21;
+}
+
+.bloque-beneficio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icono-footer-beneficio {
+    height: 38px;
+    width: auto;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.sub-verde {
+    color: #27ae60;
+    font-size: 10.5px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.tit-blanco {
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.txt-gris {
+    color: #88888c;
+    font-size: 11.5px;
+    line-height: 1.45;
+}
+
+.footer-contacto-social {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px 40px 20px;
+}
+
+.datos-contacto-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.linea-contacto {
+    display: flex;
+    align-items: center;
+    color: #9c9c9c;
+    font-size: 12.5px;
+}
+
+.mini-icono {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.redes-cuadradas {
+    display: flex;
+    gap: 6px;
+}
+
+.redes-cuadradas .btn-red-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: #222226;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.redes-cuadradas .btn-red-img:hover {
+    background-color: #333339;
+}
+
+.redes-cuadradas .btn-red-img img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+.mas-btn {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE DESIGN (ADAPTACIÓN MÓVIL)
+   ========================================================================== */
+@media (max-width: 850px) {
+    .columnas-contacto {
+        flex-direction: column;
+        gap: 35px;
+    }
+    .footer-banner-negro {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    .footer-contacto-social {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+    .linea-contacto {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-banner-negro {
+        grid-template-columns: 1fr;
+    }
+    .barra-navegacion ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}

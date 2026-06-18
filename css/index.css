@@ -1,0 +1,373 @@
+/* ==========================================================================
+   1. RESET GENERAL Y CONFIGURACIÓN BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333333;
+}
+
+/* ==========================================================================
+   2. CABECERA (HEADER) Y LOGOTIPO
+   ========================================================================== */
+.header-principal {
+    background-color: #fcfcfc;
+    padding: 25px 0 15px 0;
+}
+
+.logo-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-contenedor .logo {
+    height: 90px;
+    width: auto;
+    display: block;
+}
+
+/* Ocultar texto h1 si solo se desea el logo visual de la imagen */
+.titulo-restaurante {
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-style: italic;
+    color: #000000;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN
+   ========================================================================== */
+.barra-navegacion {
+    background-color: #1a1a1a;
+    padding: 12px 0;
+}
+
+.barra-navegacion ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    align-items: center;
+}
+
+.barra-navegacion ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+}
+
+.barra-navegacion ul li a:hover {
+    color: #b3b3b3;
+}
+
+/* ==========================================================================
+   4. SECCIÓN PRINCIPAL (SLIDER + COLUMNA INFORMATIVA)
+   ========================================================================== */
+.contenido-principal {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.seccion-dos-columnas {
+    display: flex;
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    align-items: stretch;
+}
+
+/* Columna Izquierda: Slider */
+.slider-contenedor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.slider-pantalla {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 260px;
+}
+
+.slide {
+    width: 100%;
+    text-align: center;
+}
+
+.slide img {
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Flechas de control del slider */
+.btn-slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    border: none;
+    padding: 10px 14px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-slider:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Puntos de paginación inferiores */
+.puntos-contenedor {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.punto {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #bbbbbb;
+    border-radius: 50%;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.punto.active {
+    background-color: #000000;
+    border-color: #000000;
+}
+
+/* Columna Derecha: Bloque de Información Crema */
+.informacion-centollo {
+    flex: 1;
+    background-color: #fbf8f1; /* Color crema beige de fondo */
+    padding: 40px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tarjeta-info h2 {
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.tarjeta-info .descripcion {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.tarjeta-info .descripcion strong {
+    color: #111111;
+}
+
+/* Detalles de idioma y nombres científicos */
+.detalles-tecnicos {
+    border-bottom: 1px solid #ebdcc5;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.detalles-tecnicos p {
+    font-size: 13px;
+    color: #444444;
+    margin-bottom: 5px;
+}
+
+.detalles-tecnicos em {
+    font-style: italic;
+    color: #555555;
+}
+
+/* Dimensiones y Pesos físicos */
+.datos-fisicos {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #444444;
+}
+
+.datos-fisicos strong {
+    color: #111111;
+}
+
+/* ==========================================================================
+   5. PIE DE PÁGINA (FOOTER COMPLETO)
+   ========================================================================== */
+.pie-pagina-instructor {
+    background-color: #0b0b0d;
+    color: #ffffff;
+    width: 100%;
+}
+
+/* Banner de Beneficios */
+.footer-banner-negro {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 50px 20px;
+    border-bottom: 1px solid #1c1c21;
+}
+
+.bloque-beneficio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icono-footer-beneficio {
+    height: 38px;
+    width: auto;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.sub-verde {
+    color: #27ae60;
+    font-size: 10.5px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.tit-blanco {
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.txt-gris {
+    color: #88888c;
+    font-size: 11.5px;
+    line-height: 1.45;
+}
+
+/* Franja Inferior de Contacto y Redes */
+.footer-contacto-social {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px 40px 20px;
+}
+
+.datos-contacto-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.linea-contacto {
+    display: flex;
+    align-items: center;
+    color: #9c9c9c;
+    font-size: 12.5px;
+}
+
+.mini-icono {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+/* Cajas de Redes Cuadradas */
+.redes-cuadradas {
+    display: flex;
+    gap: 6px;
+}
+
+.redes-cuadradas .btn-red-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: #222226;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.redes-cuadradas .btn-red-img:hover {
+    background-color: #333339;
+}
+
+.redes-cuadradas .btn-red-img img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+.mas-btn {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (ADAPTACIÓN A PANTALLAS MÓVILES)
+   ========================================================================== */
+@media (max-width: 850px) {
+    .seccion-dos-columnas {
+        flex-direction: column;
+    }
+    .footer-banner-negro {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    .footer-contacto-social {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+    .linea-contacto {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-banner-negro {
+        grid-template-columns: 1fr;
+    }
+    .barra-navegacion ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}

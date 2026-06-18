@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Centollo - Créditos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA LA PÁGINA DE CRÉDITOS */
+        .contenedor-creditos {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #f4f7f6;
+            min-height: 60vh;
+        }
+
+        .titulo-creditos {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitulo-creditos {
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .fila-creadoras {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tarjeta-creadora {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 320px;
+            transition: all 0.3s ease;
+            border-bottom: 5px solid #27ae60;
+        }
+
+        .nombre-creadora {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+
+        .rol-creadora {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* --- CONTENEDOR DE LA CARICATURA GENERADA --- */
+        .marco-caricatura {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 4px solid #ecf0f1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #eef2f3;
+            position: relative;
+        }
+
+        /* Ajustamos la imagen generada para mostrar la parte correspondiente a cada una */
+        .imagen-caricatura {
+            width: 200%; /* La imagen contiene a ambas, así que la agrandamos */
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+        }
+
+        /* Enfocamos el lado izquierdo de la imagen para Melanne */
+        .posicion-melanne {
+            left: 0;
+        }
+
+        /* Enfocamos el lado derecho de la imagen para Alison */
+        .posicion-alison {
+            right: 0;
+        }
+
+        /* --- SISTEMA DE ANIMACIONES DE MOVIMIENTO --- */
+        .anim-melanne {
+            animation: flotar 3s ease-in-out infinite;
+        }
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .anim-alison {
+            animation: pulso 2s ease-in-out infinite;
+        }
+        @keyframes pulso {
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+            50% { transform: scale(1.04); box-shadow: 0 15px 40px rgba(39, 174, 96, 0.25); }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        }
+
+        /* Animación de entrada inicial de las tarjetas */
+        .tarjeta-creadora {
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        .entrada-1 { animation: entrada 1s ease-out 0.3s forwards; }
+        .entrada-2 { animation: entrada 1s ease-out 0.6s forwards; }
+
+        @keyframes entrada {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-principal">
+        <div class="logo-contenedor">
+            <img src="imagenes/logo-centollo.png" alt="Logo El Centollo" class="logo">
+            <h1 class="titulo-restaurante">El Centollo</h1>
+        </div>
+    </header>
+
+   <nav class="barra-navegacion">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="ubicacion.html">Ubicación</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+            <li><a href="creditos.html" style="color: #27ae60; font-weight: bold;">Créditos</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor-creditos">
+        <h2 class="titulo-creditos">Equipo Creative</h2>
+        <p class="subtitulo-creditos">Las mentes detrás de la experiencia digital de El Centollo</p>
+
+        <div class="fila-creadoras">
+            
+            <div class="tarjeta-creadora anim-melanne entrada-1">
+                <div class="marco-caricatura">
+                    <img src="http://googleusercontent.com/image_generation_content/1" alt="Caricatura Melanne" class="imagen-caricatura posicion-melanne">
+                </div>
+                <h3 class="nombre-creadora">Melanne</h3>
+                <p class="rol-creadora">Directora de Desarrollo</p>
+                <p style="color: #7f8c8d; font-size: 14px;">Experta en arquitectura web, estilos avanzados y lógica interactiva.</p>
+            </div>
+
+            <div class="tarjeta-creadora anim-alison entrada-2">
+                <div class="marco-caricatura">
+                    <img src="http://googleusercontent.com/image_generation_content/1" alt="Caricatura Alison" class="imagen-caricatura posicion-alison">
+                </div>
+                <h3 class="nombre-creadora">Alison</h3>
+                <p class="rol-creadora">Diseñadora de Experiencia</p>
+                <p style="color: #7f8c8d; font-size: 14px;">Especialista en estructuración estética visual e identidad de marca.</p>
+            </div>
+
+        </div>
+    </main>
+
+<footer class="pie-pagina-instructor">
+    <div class="footer-banner-negro">
+        <div class="bloque-beneficio">
+            <img src="imagenes/fooder1.png" alt="Desde 2005" class="icono-footer-beneficio">
+            <span class="sub-verde">TRADICIÓN</span>
+            <strong class="tit-blanco">MÁS DE 20 AÑOS</strong>
+            <p class="txt-gris">Ofreciendo el mejor producto y sazón del mar en la ciudad</p>
+        </div>
+        <div class="bloque-beneficio">
+            <img src="imagenes/fooder2.png" alt="Directo de Lonja" class="icono-footer-beneficio">
+            <span class="sub-verde">EL PRODUCTO MÁS FRESCO</span>
+            <strong class="tit-blanco">FRESCO Y DE CALIDAD</strong>
+            <p class="txt-gris">Mariscos seleccionados minuciosamente para nuestros comensales</p>
+        </div>
+        <div class="bloque-beneficio">
+            <img src="imagenes/fooder3.png" alt="Ahumados" class="icono-footer-beneficio">
+            <span class="sub-verde">SABOR ARTESANAL</span>
+            <strong class="tit-blanco">ESPECIALIDADES</strong>
+            <p class="txt-gris">Descubre nuestros exclusivos procesos de preparación y cazuelas</p>
+        </div>
+    </div>
+
+    <div class="footer-contacto-social">
+        <div class="datos-contacto-texto">
+            <p class="linea-contacto"><img src="./imagenes/ubicacion.png" alt="Ubicación" class="mini-icono"> Carrera 1 #93-50 Chicó Alto, Bogotá</p>
+            <p class="linea-contacto"><img src="./imagenes/telefono.png" alt="Teléfono" class="mini-icono"> Tel: (57) 316 690 0508</p>
+            <p class="linea-contacto"><img src="./imagenes/correo.png" alt="Email" class="mini-icono"> servicioalcliente@elcentollo.com.co</p>
+        </div>
+        <div class="redes-cuadradas">
+            <a href="#" class="btn-red-img"><img src="imagenes/facebook (1).png" alt="Facebook"></a>
+            <a href="#" class="btn-red-img"><img src="imagenes/twitter.png" alt="Twitter"></a>
+            <a href="#" class="btn-red-img"><img src="imagenes/whatsapp.png" alt="WhatsApp"></a>
+            <a href="#" class="btn-red-img"><img src="imagenes/telegrama.png" alt="Telegram"></a>
+            <a href="#" class="btn-red-img mas-btn">+</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
